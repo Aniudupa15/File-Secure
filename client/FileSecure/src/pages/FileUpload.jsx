@@ -11,7 +11,7 @@ const FileUpload = () => {
     // Fetch files from the backend
     const fetchFiles = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/upload/');
+        const response = await axios.get('http://127.0.0.1:8000/api/files/');
         setFileList(response.data);
       } catch (error) {
         console.error('Error fetching files:', error);
@@ -34,24 +34,39 @@ const FileUpload = () => {
   };
 
   const handleFileUpload = async () => {
-    if (!file) return;
-
     const formData = new FormData();
     formData.append('file', file);
 
     try {
+      const csrfToken = getCsrfTokenFromCookies();
       await axios.post('http://127.0.0.1:8000/api/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'X-CSRFToken': csrfToken,
         },
       });
-      // Fetch files again to update the list
-      const response = await axios.get('http://127.0.0.1:8000/api/upload/');
-      setFileList(response.data);
-      setFile(null); // Clear the selected file
+      // Optionally, refresh the file list after upload
+      fetchFiles();
+      setFile(null);
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+  };
+
+  const getCsrfTokenFromCookies = () => {
+    const name = 'csrftoken=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length);
+      }
+    }
+    return '';
   };
 
   return (
@@ -100,14 +115,18 @@ const FileUpload = () => {
         <FontAwesomeIcon icon={faUpload} className="p-8" />
         Upload Manually
       </button>
-      <button
-        type="button"
-        onClick={handleFileUpload}
-        className="mt-4 w-64 h-14 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center"
-      >
-        <FontAwesomeIcon icon={faUpload} className="p-8" />
-        Upload File
-      </button>
+
+      {file && (
+        <button
+          type="button"
+          onClick={handleFileUpload}
+          className="mt-4 w-64 h-14 bg-blue-700 text-white rounded-lg hover:bg-blue-800 flex items-center"
+        >
+          <FontAwesomeIcon icon={faUpload} className="p-8" />
+          Upload File
+        </button>
+      )}
+
       <div className="mt-8 w-4/5">
         <h2 className="text-2xl font-bold mb-4">Uploaded Files</h2>
         <ul className="list-disc list-inside w-5/6 h-5/6 rounded-lg bg-white p-4">
