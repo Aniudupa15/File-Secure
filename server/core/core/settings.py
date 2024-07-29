@@ -9,12 +9,22 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Retrieve the encryption key from environment variables
+ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
+
+# Ensure ENCRYPTION_KEY is valid
+if ENCRYPTION_KEY is None or len(ENCRYPTION_KEY.encode('utf-8')) != 44:
+    raise ValueError("ENCRYPTION_KEY must be a valid 32-byte base64-encoded string")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
