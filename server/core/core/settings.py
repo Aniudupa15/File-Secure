@@ -41,6 +41,7 @@ INSTALLED_APPS = [
       'rest_framework',
       'app',
        'encrypted_files',
+       'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,9 @@ FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
     "django.core.files.uploadhandler.TemporaryFileUploadHandler"
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
