@@ -12,7 +12,11 @@ const FileUpload = () => {
     const fetchFiles = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/files/');
-        setFileList(response.data);
+        const filteredFiles = response.data.map(file => ({
+          ...file,
+          file: file.file.replace('http://127.0.0.1:8000/media/uploads/', '')
+        }));
+        setFileList(filteredFiles);
       } catch (error) {
         console.error('Error fetching files:', error);
       }
@@ -132,7 +136,7 @@ const FileUpload = () => {
         <ul className="list-disc list-inside w-5/6 h-5/6 rounded-lg bg-white p-4">
           {fileList.length > 0 ? (
             fileList.map((file, index) => (
-              <li key={index} className="text-lg text-gray-500">{file.name}</li>
+              <li key={index} className="text-lg text-gray-500">{file.file}</li>
             ))
           ) : (
             <p className="text-lg text-gray-500">No files available</p>
