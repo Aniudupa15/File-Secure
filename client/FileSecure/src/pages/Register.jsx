@@ -7,13 +7,10 @@ import axios from 'axios';
 const inputClasses = 'w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-primary';
 
 const RegisterForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    phone: '',
-    lastName: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [Name ,setName]=useState()
+  const [PhoneNo ,setPhone]=useState()
+  const [Password ,setPass]=useState()
+  const [ConfirmPassword ,setCPass]=useState()
 
   const navigate = useNavigate();
 
@@ -33,7 +30,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/register/', formData)
+    axios.post('http://localhost:8000/register/', {Name,PhoneNo,Password,ConfirmPassword})
       .then(response => {
         console.log(response.data);
         navigate('/upload'); // Redirect to the upload page
@@ -61,15 +58,15 @@ const RegisterForm = () => {
               name="username" 
               placeholder="Username" 
               value={formData.username}
-              onChange={handleChange}
+              onChange={(e)=>setName(e.target.value)}
             />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1" htmlFor="phone">Mobile Number</label>
             <PhoneInput
-              country={"us"}
+              country={"in"}
               value={formData.phone}
-              onChange={handlePhoneChange}
+              onChange={(e)=>setPhone(e.target.value)}
               inputClass={inputClasses}
               containerClass="phone-input-container"
               inputStyle={{ width: '100%' }}
@@ -84,7 +81,7 @@ const RegisterForm = () => {
               name="password" 
               placeholder="Password" 
               value={formData.password}
-              onChange={handleChange}
+              onChange={(e)=>setPass(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -96,7 +93,7 @@ const RegisterForm = () => {
               name="confirmPassword" 
               placeholder="Confirm Password" 
               value={formData.confirmPassword}
-              onChange={handleChange}
+              onChange={(e)=>setCPass(e.target.value)}
             />
           </div>
           <button 
