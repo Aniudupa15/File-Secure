@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import PhoneInput from "react-phone-input-2";
-import 'react-phone-input-2/lib/style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,32 +6,17 @@ const inputClasses = 'w-full px-3 py-2 border rounded-lg focus:outline-none focu
 
 const RegisterForm = () => {
   const [Name ,setName]=useState()
-  const [PhoneNo ,setPhone]=useState()
   const [Password ,setPass]=useState()
   const [ConfirmPassword ,setCPass]=useState()
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handlePhoneChange = (phone) => {
-    setFormData({
-      ...formData,
-      phone
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/register/', {Name,PhoneNo,Password,ConfirmPassword})
+    axios.post('http://localhost:3001/register/', {Name,Password,ConfirmPassword})
       .then(response => {
         console.log(response.data);
-        navigate('/upload'); // Redirect to the upload page
+        navigate('/Login'); // Redirect to the upload page
       })
       .catch(error => {
         console.log(error.response.data);
@@ -57,19 +40,7 @@ const RegisterForm = () => {
               id="username" 
               name="username" 
               placeholder="Username" 
-              value={formData.username}
               onChange={(e)=>setName(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1" htmlFor="phone">Mobile Number</label>
-            <PhoneInput
-              country={"in"}
-              value={formData.phone}
-              onChange={(e)=>setPhone(e.target.value)}
-              inputClass={inputClasses}
-              containerClass="phone-input-container"
-              inputStyle={{ width: '100%' }}
             />
           </div>
           <div className="mb-4">
@@ -80,7 +51,6 @@ const RegisterForm = () => {
               id="password" 
               name="password" 
               placeholder="Password" 
-              value={formData.password}
               onChange={(e)=>setPass(e.target.value)}
             />
           </div>
@@ -92,7 +62,6 @@ const RegisterForm = () => {
               id="confirmPassword" 
               name="confirmPassword" 
               placeholder="Confirm Password" 
-              value={formData.confirmPassword}
               onChange={(e)=>setCPass(e.target.value)}
             />
           </div>
