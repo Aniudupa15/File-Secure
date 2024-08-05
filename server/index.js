@@ -8,7 +8,9 @@ app.use(express.json())
 app.use(cors())
 
 mongoose.connect("mongodb://127.0.0.1:27017/File-Secure")
-
+.then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+    
 app.post ("/Login",(req,res)=>{
     const {Name,Password}=req.body;
     FileSecureModel.findOne({Name:Name})
