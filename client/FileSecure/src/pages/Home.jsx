@@ -2,49 +2,51 @@ import React from "react";
 import front from "../Images/front.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // Don't forget to import axios
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faTwitter, faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const teamMembers = [
-{
-  name: "Anirudha Udupa",
-  image: "https://via.placeholder.com/150",
-  social: {
-    github: "#",
-    instagram: "#"
+  {
+    name: "Anirudha Udupa",
+    image: "https://via.placeholder.com/150",
+    social: {
+      github: "#",
+      instagram: "#"
+    }
+  },
+  {
+    name: "Ananya Udupa",
+    title: "Sales Manager",
+    image: "https://via.placeholder.com/150",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    social: {
+      twitter: "#",
+      facebook: "#",
+      instagram: "#"
+    }
+  },
+  {
+    name: "Ananya Udupa",
+    title: "Web Developer",
+    image: "https://via.placeholder.com/150",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    social: {
+      twitter: "#",
+      facebook: "#",
+      instagram: "#"
+    }
+  },
+  {
+    name: "Roxie Swanson",
+    title: "Web Designer",
+    image: "https://via.placeholder.com/150",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    social: {
+      twitter: "#",
+      facebook: "#",
+      instagram: "#"
+    }
   }
-},
-{
-  name: "May Brown",
-  title: "Sales Manager",
-  image: "https://via.placeholder.com/150",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-  social: {
-    twitter: "#",
-    facebook: "#",
-    instagram: "#"
-  }
-},
-{
-  name: "Ananya Udupa",
-  title: "Web Developer",
-  image: "https://via.placeholder.com/150",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-  social: {
-    twitter: "#",
-    facebook: "#",
-    instagram: "#"
-  }
-},
-{
-  name: "Roxie Swanson",
-  title: "Web Designer",
-  image: "https://via.placeholder.com/150",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-  social: {
-    twitter: "#",
-    facebook: "#",
-    instagram: "#"
-  }
-}
 ];
 
 const Home = () => {
@@ -128,7 +130,7 @@ const Home = () => {
                       rel="noreferrer"
                     >
                       <span className="sr-only">Facebook</span>
-                      {icons.facebook}
+                      <FontAwesomeIcon icon={faFacebook} />
                     </a>
                   )}
                   {member.social.instagram && (
@@ -139,7 +141,7 @@ const Home = () => {
                       rel="noreferrer"
                     >
                       <span className="sr-only">Instagram</span>
-                      {icons.instagram}
+                      <FontAwesomeIcon icon={faInstagram} />
                     </a>
                   )}
                   {member.social.twitter && (
@@ -150,7 +152,7 @@ const Home = () => {
                       rel="noreferrer"
                     >
                       <span className="sr-only">Twitter</span>
-                      {icons.twitter}
+                      <FontAwesomeIcon icon={faTwitter} />
                     </a>
                   )}
                   {member.social.github && (
@@ -161,7 +163,7 @@ const Home = () => {
                       rel="noreferrer"
                     >
                       <span className="sr-only">GitHub</span>
-                      {icons.github}
+                      <FontAwesomeIcon icon={faGithub} />
                     </a>
                   )}
                 </div>
