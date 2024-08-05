@@ -7,17 +7,17 @@ const app=express()
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb://127.0.0.1:27017/File-Secure")
+mongoose.connect("mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/FileSecure")
 .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
     
 app.post ("/Login",(req,res)=>{
     const {Name,Password}=req.body;
     FileSecureModel.findOne({Name:Name})
-    .then(user=>{
-        if(user)
+    .then(users=>{
+        if(users)
         {
-            if(user.Password===Password)
+            if(users.Password===Password)
                 res.json("sucess")
             else{
                 res.json("the password is incorrect")
@@ -32,10 +32,10 @@ app.post ("/Login",(req,res)=>{
 app.post ("/Button",(req,res)=>{
     const {Name,Password}=req.body;
     FileSecureModel.findOne({Name:Name})
-    .then(user=>{
-        if(user)
+    .then(users=>{
+        if(users)
         {
-            if(user.Password===Password)
+            if(users.Password===Password)
                 res.json("sucess")
             else{
                 res.json("the password is incorrect")
@@ -50,7 +50,7 @@ app.post ("/Button",(req,res)=>{
 
 app.post('/register',(req,res)=>{
     FileSecureModel.create(req.body)
-    .then(Users=>res.json(Users))
+    .then(users=>res.json(users))
     .catch(err=>res.json(err))
 })
 app.listen(3001,()=>{

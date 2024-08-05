@@ -13,7 +13,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/register/', {Name,Password,ConfirmPassword})
+    axios.post('mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/register/', {Name,Password,ConfirmPassword})
       .then(response => {
         console.log(response.data);
         navigate('/Login'); // Redirect to the upload page

@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/Login", { Name, Password })
+      .post("mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/Login/", { Name, Password })
       .then((response) => {
         console.log(response.data);
         if(response.data==="sucess")
