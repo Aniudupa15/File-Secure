@@ -8,43 +8,38 @@ import { faGithub, faTwitter, faFacebook, faInstagram } from "@fortawesome/free-
 const teamMembers = [
   {
     name: "Anirudha Udupa",
-    image: "https://via.placeholder.com/150",
+    image: "./src/Images/1.jpg",
+    description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
-      github: "#",
-      instagram: "#"
+      instagram: "https://www.instagram.com/anirudhaudupa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      github: "https://github.com/Aniudupa15",
     }
   },
   {
     name: "Ananya Udupa",
-    title: "Sales Manager",
-    image: "https://via.placeholder.com/150",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    image: "./src/Images/2.jpg",
+    description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
-      twitter: "#",
-      facebook: "#",
-      instagram: "#"
+      instagram: "https://www.instagram.com/ananya_udupa6/",
+      github: "https://github.com/ananyaudupa",
     }
   },
   {
-    name: "Ananya Udupa",
-    title: "Web Developer",
-    image: "https://via.placeholder.com/150",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    name: "Pratham P Shetty",
+    image: "./src/Images/3.jpg",
+    description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
-      twitter: "#",
-      facebook: "#",
-      instagram: "#"
+      instagram: "https://www.instagram.com/prathamp.shetty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      github: "https://github.com/prathampshetty",
     }
   },
   {
-    name: "Roxie Swanson",
-    title: "Web Designer",
-    image: "https://via.placeholder.com/150",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+    name: "Vrushali A Poojary",
+    image: "./src/Images/4.jpg",
+    description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
-      twitter: "#",
-      facebook: "#",
-      instagram: "#"
+      twitter: "https://x.com/VrushaliAP04",
+      github: "https://github.com/vrushaliapoojary",
     }
   }
 ];
@@ -104,7 +99,7 @@ const Home = () => {
             The Team
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600 md:text-xl">
-            The working hands behind the success of DocEasy!
+            The working hands behind the success of File-Secure!
           </p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
