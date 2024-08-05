@@ -66,7 +66,7 @@ const Home = () => {
             The Team
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600 md:text-xl">
-            The working hands behind the success of DocEasy!
+            The working hands behind the success of File Secure!
           </p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
