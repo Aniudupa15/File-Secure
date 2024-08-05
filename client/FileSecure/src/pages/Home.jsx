@@ -4,12 +4,48 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // Don't forget to import axios
 
 const teamMembers = [
-  // Your team members data
+{
+  name: "Anirudha Udupa",
+  image: "https://via.placeholder.com/150",
+  social: {
+    github: "#",
+    instagram: "#"
+  }
+},
+{
+  name: "May Brown",
+  title: "Sales Manager",
+  image: "https://via.placeholder.com/150",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+  social: {
+    twitter: "#",
+    facebook: "#",
+    instagram: "#"
+  }
+},
+{
+  name: "Ananya Udupa",
+  title: "Web Developer",
+  image: "https://via.placeholder.com/150",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+  social: {
+    twitter: "#",
+    facebook: "#",
+    instagram: "#"
+  }
+},
+{
+  name: "Roxie Swanson",
+  title: "Web Designer",
+  image: "https://via.placeholder.com/150",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+  social: {
+    twitter: "#",
+    facebook: "#",
+    instagram: "#"
+  }
+}
 ];
-
-const icons = {
-  // Your icons data
-};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -66,7 +102,7 @@ const Home = () => {
             The Team
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600 md:text-xl">
-            The working hands behind the success of File Secure!
+            The working hands behind the success of DocEasy!
           </p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
