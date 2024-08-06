@@ -1,27 +1,28 @@
+require('dotenv').config();  
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const { MongoClient, GridFSBucket } = require('mongodb');
 
-// Create Express application
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+const mongoURI = "mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/";
+if (!mongoURI) {
+  console.error('MONGO_URL not defined in environment variables');
+  process.exit(1);
+}
 
-const mongoURI = process.env.MONGO_URL;
 const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
 let bucket;
 
-async function connectToDB() {
-  try {
-    await client.connect();
-    const db = client.db('filesecure');
-    bucket = new GridFSBucket(db, { bucketName: 'uploads' });
-    console.log('MongoDB connected and GridFS bucket created');
-  } catch (err) {
+
+client.connect(err => {
+  if (err) {
     console.error('Failed to connect to MongoDB:', err);
     process.exit(1);
   }
@@ -82,10 +83,30 @@ app.get('/file/:filename', (req, res) => {
     });
 });
 
-
+// User authentication routes
 const FileSecureModel = require('./models/File-Secure');
 
 app.post('/Login', (req, res) => {
+  const { Name, Password } = req.body;
+  FileSecureModel.findOne({ Name })
+    .then(user => {
+      if (user) {
+        if (user.Password === Password) {
+          res.json("success");
+        } else {
+          res.json("the password is incorrect");
+        }
+      } else {
+        res.json("no Record");
+      }
+    })
+    .catch(err => {
+      console.error('Error during login:', err.message);
+      res.status(500).send('Internal Server Error');
+    });
+});
+
+app.post('/Button', (req, res) => {
   const { Name, Password } = req.body;
   FileSecureModel.findOne({ Name: Name })
     .then(users => {
@@ -100,8 +121,11 @@ app.post('/Login', (req, res) => {
 
 app.post('/register', (req, res) => {
   FileSecureModel.create(req.body)
-    .then(users => res.json(users))
-    .catch(err => res.json(err));
+    .then(user => res.json(user))
+    .catch(err => {
+      console.error('Error during registration:', err.message);
+      res.status(500).send('Internal Server Error');
+    });
 });
 
 // Start server
