@@ -1,10 +1,11 @@
-require('dotenv').config();
+require('dotenv').config();  
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const { MongoClient, GridFSBucket } = require('mongodb');
-const FileSecureModel = require('./models/File-Secure');
+
 
 const app = express();
 app.use(express.json());
@@ -19,17 +20,16 @@ if (!mongoURI) {
 const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 let bucket;
 
+
 client.connect(err => {
   if (err) {
     console.error('Failed to connect to MongoDB:', err);
     process.exit(1);
   }
-  const db = client.db('filesecure');
-  bucket = new GridFSBucket(db, { bucketName: 'uploads' });
-  console.log('MongoDB connected and GridFS bucket created');
-});
+}
 
-// Use memory storage to handle file buffer
+connectToDB();
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -106,23 +106,16 @@ app.post('/Login', (req, res) => {
     });
 });
 
-app.post('/button', (req, res) => {
+app.post('/Button', (req, res) => {
   const { Name, Password } = req.body;
-  FileSecureModel.findOne({ Name })
-    .then(user => {
-      if (user) {
-        if (user.Password === Password) {
-          res.json("success");
-        } else {
-          res.json("the password is incorrect");
-        }
+  FileSecureModel.findOne({ Name: Name })
+    .then(users => {
+      if (users) {
+        if (users.Password === Password) res.json("success");
+        else res.json("the password is incorrect");
       } else {
         res.json("no Record");
       }
-    })
-    .catch(err => {
-      console.error('Error during button authentication:', err.message);
-      res.status(500).send('Internal Server Error');
     });
 });
 
