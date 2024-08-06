@@ -1,12 +1,10 @@
-require('dotenv').config();  
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const { MongoClient, GridFSBucket } = require('mongodb');
 
-
+// Create Express application
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -17,18 +15,20 @@ const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopo
 
 let bucket;
 
-
-client.connect(err => {
-  if (err) {
+async function connectToDB() {
+  try {
+    await client.connect();
+    const db = client.db('filesecure');
+    bucket = new GridFSBucket(db, { bucketName: 'uploads' });
+    console.log('MongoDB connected and GridFS bucket created');
+  } catch (err) {
     console.error('Failed to connect to MongoDB:', err);
     process.exit(1);
   }
-  const db = client.db('filesecure');
-  bucket = new GridFSBucket(db, { bucketName: 'uploads' });
-  console.log('MongoDB connected and GridFS bucket created');
-});
+}
 
-// Use memory storage to handle file buffer
+connectToDB();
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -98,26 +98,13 @@ app.post('/Login', (req, res) => {
     });
 });
 
-app.post('/Button', (req, res) => {
-  const { Name, Password } = req.body;
-  FileSecureModel.findOne({ Name: Name })
-    .then(users => {
-      if (users) {
-        if (users.Password === Password) res.json("success");
-        else res.json("the password is incorrect");
-      } else {
-        res.json("no Record");
-      }
-    });
-});
-
 app.post('/register', (req, res) => {
   FileSecureModel.create(req.body)
     .then(users => res.json(users))
     .catch(err => res.json(err));
 });
 
-
+// Start server
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });
