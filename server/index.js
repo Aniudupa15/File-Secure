@@ -84,7 +84,9 @@ app.get('/file/:filename', (req, res) => {
 });
 
 // User authentication routes
-app.post('/login', (req, res) => {
+const FileSecureModel = require('./models/File-Secure');
+
+app.post('/Login', (req, res) => {
   const { Name, Password } = req.body;
   FileSecureModel.findOne({ Name })
     .then(user => {
@@ -134,7 +136,6 @@ app.post('/register', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(3001, () => {
+  console.log('Server is running on port 3001');
 });
