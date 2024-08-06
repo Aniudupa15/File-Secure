@@ -1,7 +1,7 @@
 import React from "react";
 import front from "../Images/front.jpeg";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Don't forget to import axios
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter, faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -9,6 +9,7 @@ const teamMembers = [
   {
     name: "Anirudha Udupa",
     image: "./src/Images/1.jpg",
+    title: "Team Lead",
     description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
       instagram: "https://www.instagram.com/anirudhaudupa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -18,6 +19,7 @@ const teamMembers = [
   {
     name: "Ananya Udupa",
     image: "./src/Images/2.jpg",
+    title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/ananya_udupa6/",
@@ -27,6 +29,7 @@ const teamMembers = [
   {
     name: "Pratham P Shetty",
     image: "./src/Images/3.jpg",
+    title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/prathamp.shetty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -36,6 +39,7 @@ const teamMembers = [
   {
     name: "Vrushali A Poojary",
     image: "./src/Images/4.jpg",
+    title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       twitter: "https://x.com/VrushaliAP04",
@@ -53,7 +57,7 @@ const Home = () => {
     const Password = "your-password";
 
     axios
-      .post("http://localhost:3001/Login", { Name, Password })
+      .post("http://localhost:3001/button", { Name, Password })
       .then((response) => {
         console.log(response.data);
         if (response.data === "success") {
@@ -68,15 +72,14 @@ const Home = () => {
   };
 
   return (
-    <div className="max-h-fit mt-4 pt-44 pr-16 pb-16 bg-gradient-to-r from-blue-200 to-blue-400">
-      <div className="flex place-content-between w-full">
-        <div className="w-auto mt-24 ms-64 place-content-center">
-          <h1 className="text-black text-8xl font-extrabold pb-5">
+    <div className="min-h-screen bg-gradient-to-r from-blue-200 to-blue-400 flex flex-col items-center py-10">
+      <div className="flex flex-col lg:flex-row items-center w-full max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col items-center lg:items-start lg:mr-16 mb-10 lg:mb-0">
+          <h1 className="text-black text-6xl lg:text-8xl font-extrabold pb-5 text-center lg:text-left">
             File-Secure
           </h1>
-          <h1 className="text-4xl font-bold mb-10">
-            Protecting Your<span className="text-blue-700 "> Files</span> with
-            Encryption
+          <h1 className="text-3xl lg:text-4xl font-bold mb-10 text-center lg:text-left">
+            Protecting Your <span className="text-blue-700">Files</span> with Encryption
           </h1>
           <button
             onClick={checkLogin}
@@ -85,16 +88,16 @@ const Home = () => {
             Explore Now!
           </button>
         </div>
-        <div className="w-auto mt-24 ms-64 place-content-center">
+        <div className="flex justify-center lg:justify-end w-full lg:w-auto">
           <img
             src={front}
             alt="Encryption"
-            className="shadow-lg rounded-lg max-w-2xl"
+            className="shadow-lg rounded-lg w-full lg:w-auto max-w-full"
           />
         </div>
       </div>
-      <div className="mx-auto mt-56 max-w-7xl px-2 lg:px-0">
-        <div className="mx-auto max-w-3xl md:text-center">
+      <div className="mt-20 lg:mt-56 w-full max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-xl font-bold leading-tight py-5 text-black sm:text-4xl lg:text-5xl lg:leading-tight">
             The Team
           </h2>
@@ -104,19 +107,17 @@ const Home = () => {
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member, i) => (
-            <div key={i} className="mx-auto w-[250px] rounded-md border">
+            <div key={i} className="mx-auto w-full max-w-xs rounded-md border">
               <img
                 src={member.image}
                 alt={member.name}
-                className="h-[200px] w-full rounded-t-md object-cover"
+                className="h-48 w-full rounded-t-md object-cover"
               />
               <div className="p-4">
                 <h1 className="text-lg font-semibold">{member.name}</h1>
-                <h6 className="mt-3 font-medium">{member.title}</h6>
-                <p className="mt-3 text-sm text-gray-600">
-                  {member.description}
-                </p>
-                <div className="mt-4 flex flex-wrap justify-center gap-4 lg:justify-start">
+                <h6 className="mt-2 font-medium">{member.title}</h6>
+                <p className="mt-2 text-sm text-gray-600">{member.description}</p>
+                <div className="mt-2 flex justify-center gap-4">
                   {member.social.facebook && (
                     <a
                       className="text-gray-700 transition hover:text-blue-600"
