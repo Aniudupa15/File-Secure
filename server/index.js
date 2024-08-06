@@ -1,22 +1,23 @@
-require('dotenv').config();  
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const { MongoClient, GridFSBucket } = require('mongodb');
-
+const FileSecureModel = require('./models/File-Secure');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+const mongoURI = "mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/";
+if (!mongoURI) {
+  console.error('MONGO_URL not defined in environment variables');
+  process.exit(1);
+}
 
-const mongoURI = process.env.MONGO_URL;
 const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
 let bucket;
-
 
 client.connect(err => {
   if (err) {
@@ -83,41 +84,57 @@ app.get('/file/:filename', (req, res) => {
 });
 
 // User authentication routes
-const FileSecureModel = require('./models/File-Secure');
-
-app.post('/Login', (req, res) => {
+app.post('/login', (req, res) => {
   const { Name, Password } = req.body;
-  FileSecureModel.findOne({ Name: Name })
-    .then(users => {
-      if (users) {
-        if (users.Password === Password) res.json("success");
-        else res.json("the password is incorrect");
+  FileSecureModel.findOne({ Name })
+    .then(user => {
+      if (user) {
+        if (user.Password === Password) {
+          res.json("success");
+        } else {
+          res.json("the password is incorrect");
+        }
       } else {
         res.json("no Record");
       }
+    })
+    .catch(err => {
+      console.error('Error during login:', err.message);
+      res.status(500).send('Internal Server Error');
     });
 });
 
-app.post('/Button', (req, res) => {
+app.post('/button', (req, res) => {
   const { Name, Password } = req.body;
-  FileSecureModel.findOne({ Name: Name })
-    .then(users => {
-      if (users) {
-        if (users.Password === Password) res.json("success");
-        else res.json("the password is incorrect");
+  FileSecureModel.findOne({ Name })
+    .then(user => {
+      if (user) {
+        if (user.Password === Password) {
+          res.json("success");
+        } else {
+          res.json("the password is incorrect");
+        }
       } else {
         res.json("no Record");
       }
+    })
+    .catch(err => {
+      console.error('Error during button authentication:', err.message);
+      res.status(500).send('Internal Server Error');
     });
 });
 
 app.post('/register', (req, res) => {
   FileSecureModel.create(req.body)
-    .then(users => res.json(users))
-    .catch(err => res.json(err));
+    .then(user => res.json(user))
+    .catch(err => {
+      console.error('Error during registration:', err.message);
+      res.status(500).send('Internal Server Error');
+    });
 });
 
 // Start server
-app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
