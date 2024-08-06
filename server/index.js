@@ -2,15 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
-const { MongoClient, GridFSBucket } = require('mongodb');
+const { MongoClient, GridFSBucket } = require('mongodb'); // Added for password hashing
+const FormDataModel = require('./models/FormData'); // Ensure this model is correctly defined
 
 // Create Express application
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-const mongoURI = process.env.MONGO_URL;
+const mongoURI = "mongodb+srv://files:pratham@prathampshetty99sai.j4iophu.mongodb.net/filesecure";
 const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let bucket;
@@ -34,11 +34,11 @@ const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
-    return res.status(400).send('No file uploaded.');
+    return res.status(400).json({ message: 'No file uploaded.' });
   }
 
   if (!bucket) {
-    return res.status(500).send('GridFS bucket not initialized.');
+    return res.status(500).json({ message: 'GridFS bucket not initialized.' });
   }
 
   const uploadStream = bucket.openUploadStream(req.file.originalname, {
@@ -47,12 +47,12 @@ app.post('/upload', upload.single('file'), (req, res) => {
   uploadStream.end(req.file.buffer);
 
   uploadStream.on('finish', () => {
-    res.send('File uploaded successfully.');
+    res.json({ message: 'File uploaded successfully.' });
   });
 
   uploadStream.on('error', (err) => {
     console.error('Error uploading file:', err.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ message: 'Internal Server Error' });
   });
 });
 
@@ -65,44 +65,68 @@ app.get('/files', async (req, res) => {
     res.json(files);
   } catch (err) {
     console.error('Error fetching files:', err.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 app.get('/file/:filename', (req, res) => {
   if (!bucket) {
-    return res.status(500).send('GridFS bucket not initialized.');
+    return res.status(500).json({ message: 'GridFS bucket not initialized.' });
   }
 
   bucket.openDownloadStreamByName(req.params.filename)
     .pipe(res)
     .on('error', (err) => {
       console.error('Error downloading file:', err.message);
-      res.status(500).send('Internal Server Error');
+      res.status(500).json({ message: 'Internal Server Error' });
     });
 });
 
-
-const FileSecureModel = require('./models/File-Secure');
-
-app.post('/Login', (req, res) => {
-  const { Name, Password } = req.body;
-  FileSecureModel.findOne({ Name: Name })
-    .then(users => {
-      if (users) {
-        if (users.Password === Password) res.json("success");
-        else res.json("the password is incorrect");
-      } else {
-        res.json("no Record");
-      }
-    });
+mongoose.connect('mongodb+srv://files:pratham@prathampshetty99sai.j4iophu.mongodb.net/filesecure', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
 app.post('/register', (req, res) => {
-  FileSecureModel.create(req.body)
-    .then(users => res.json(users))
-    .catch(err => res.json(err));
+  const { email, password } = req.body;
+
+  FormDataModel.findOne({ email })
+    .then(user => {
+      if (user) {
+        return res.json({ message: 'Already registered' });
+      }
+
+      return FormDataModel.create(req.body);
+    })
+    .then(log_reg_form => res.json(log_reg_form))
+    .catch(err => res.status(500).json({ message: err.message }));
 });
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Basic validation for presence of email and password
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required' });
+  }
+
+  FormDataModel.findOne({ email })
+    .then(user => {
+      if (user) {
+        // Compare plaintext passwords
+        if (user.password === password) {
+          return res.json({ message: 'Success' });
+        } else {
+          return res.status(401).json({ message: 'Wrong password' });
+        }
+      } else {
+        return res.status(404).json({ message: 'No records found!' });
+      }
+    })
+    .catch(err => res.status(500).json({ message: err.message }));
+});
+
+
 
 // Start server
 app.listen(3001, () => {
