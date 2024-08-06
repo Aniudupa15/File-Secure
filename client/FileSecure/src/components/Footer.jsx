@@ -7,7 +7,7 @@ function Footer() {
       <footer className="bg-white">
         <div className="mx-auto max-w-screen-xl max-h-96 px-4 pb-8 pt-8 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-md border-t border-gray-100">
-            <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+            <strong className="block text-center text-xl mb-10 font-bold text-gray-900 sm:text-3xl">
               Stay Informed, Stay Secure
             </strong>
 
@@ -34,9 +34,12 @@ function Footer() {
           <div className="flex justify-center">
             <div className="mt-8 max-w-sm lg:max-w-none">
               <p className="mt-4 text-center text-gray-500 lg:text-lg">
-                At File-Secure, we are committed to protecting your data with the latest encryption technologies. Stay connected with us and never miss an update about our new features, security tips, and more. Follow us on social media to stay in the loop!
+                At File-Secure, we are committed to protecting your data with
+                the latest encryption technologies. Stay connected with us and
+                never miss an update about our new features, security tips, and
+                more. Follow us on social media to stay in the loop!
               </p>
-              <div className="mt-6 flex justify-center gap-4">
+              <div className="mt-6 flex justify-center mt-24 gap-4">
                 <Link
                   className="text-gray-700 transition hover:text-blue-600"
                   to="#"
@@ -97,6 +100,21 @@ function Footer() {
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743A11.652 11.652 0 013.192 4.158a4.106 4.106 0 001.27 5.482 4.073 4.073 0 01-1.86-.514v.052a4.106 4.106 0 003.292 4.022 4.095 4.095 0 01-1.852.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </Link>
+              </div>
+              <div className="mt-16 border-t border-gray-100 pt-8">
+                <p className="text-center mb-10 text-xs/relaxed text-gray-500">
+                  © <span>FileSecure 2024, </span>All rights reserved.
+                  <br />
+                  An Initiative taken by
+                  <Link
+                    href="https://aetherial.netlify.app/"
+                    target="_blank"
+                    className="text-blue-600 font-bold transition hover:text-blue-600"
+                  >
+                    {" "}
+                    AETHERIAL
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

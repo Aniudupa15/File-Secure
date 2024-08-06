@@ -9,6 +9,7 @@ const teamMembers = [
   {
     name: "Anirudha Udupa",
     image: "./src/Images/1.jpg",
+    title:"Team Lead",
     description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
       instagram: "https://www.instagram.com/anirudhaudupa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -18,6 +19,7 @@ const teamMembers = [
   {
     name: "Ananya Udupa",
     image: "./src/Images/2.jpg",
+    title:"Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/ananya_udupa6/",
@@ -27,6 +29,7 @@ const teamMembers = [
   {
     name: "Pratham P Shetty",
     image: "./src/Images/3.jpg",
+    title:"Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/prathamp.shetty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -36,6 +39,7 @@ const teamMembers = [
   {
     name: "Vrushali A Poojary",
     image: "./src/Images/4.jpg",
+    title:"Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       twitter: "https://x.com/VrushaliAP04",
@@ -102,7 +106,7 @@ const Home = () => {
             The working hands behind the success of File-Secure!
           </p>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid md:text-center grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member, i) => (
             <div key={i} className="mx-auto w-[250px] rounded-md border">
               <img
@@ -112,11 +116,11 @@ const Home = () => {
               />
               <div className="p-4">
                 <h1 className="text-lg font-semibold">{member.name}</h1>
-                <h6 className="mt-3 font-medium">{member.title}</h6>
-                <p className="mt-3 text-sm text-gray-600">
+                <h6 className="mt-2 font-medium">{member.title}</h6>
+                <p className="mt-2 text-sm text-gray-600">
                   {member.description}
                 </p>
-                <div className="mt-4 flex flex-wrap justify-center gap-4 lg:justify-start">
+                <div className="mt-2 flex gap-4 lg:justify-center">
                   {member.social.facebook && (
                     <a
                       className="text-gray-700 transition hover:text-blue-600"
