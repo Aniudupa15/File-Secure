@@ -8,26 +8,27 @@ const socialButtonClasses =
   "w-full py-2 rounded-lg hover:bg-zinc-200 flex items-center justify-center mb-4";
 
 const Login = () => {
-  const [Name, setName] = useState();
-  const [Password, setPass] = useState();
+  const [email, setName] = useState();
+    const [password, setPass] = useState();
+    const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/Login/", { Name, Password })
-      .then((response) => {
-        console.log(response.data);
-        if(response.data==="sucess")
-        {
-          navigate('../')
-        }
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        axios.post( 'http://localhost:3001/login', {email, password})
+        .then(result => {
+            console.log(result);
+            if(result.data === "Success"){
+                console.log("Login Success");
+                alert('Login successful!')
+                navigate('/');
+            }
+            else{
+                alert('Incorrect password! Please try again.');
+            }
+        })
+        .catch(err => console.log(err));
+    }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-400">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">

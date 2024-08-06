@@ -4,24 +4,41 @@ import axios from 'axios';
 
 const inputClasses = 'w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-primary';
 
-const RegisterForm = () => {
-  const [Name ,setName]=useState()
-  const [Password ,setPass]=useState()
-  const [ConfirmPassword ,setCPass]=useState()
-
+const RegisterForm = ()  => {
+  const [Name, setName] = useState('');
+  const [Password, setPass] = useState('');
+  const [CPassword, setCPass] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('mongodb+srv://aniudupa15:n39dBcBk744JjjOu@anirudha.sl6tcuz.mongodb.net/register/', {Name,Password,ConfirmPassword})
-      .then(response => {
-        console.log(response.data);
-        navigate('/Login'); // Redirect to the upload page
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    // Ensure passwords match before sending the request
+    if (Password !== CPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+    // Define the data object to be sent to the server
+    const data = {
+      name: Name,
+      password: Password,
+      email: Name, // Assuming the username is also the email
+    };
+
+    axios.post('http://localhost:3001/register', data)
+      .then(result => {
+        console.log(result);
+        if (result.data === "Already registered") {
+          alert("E-mail already registered! Please Login to proceed.");
+          navigate('/login');
+        } else {
+          alert("Registered successfully! Please Login to proceed.");
+          navigate('/login');
+        }
       })
-      .catch(error => {
-        console.log(error.response.data);
-      });
-  };
+      .catch(err => console.log(err));
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-400 mt-8">
@@ -40,7 +57,7 @@ const RegisterForm = () => {
               id="username" 
               name="username" 
               placeholder="Username" 
-              onChange={(e)=>setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -51,7 +68,7 @@ const RegisterForm = () => {
               id="password" 
               name="password" 
               placeholder="Password" 
-              onChange={(e)=>setPass(e.target.value)}
+              onChange={(e) => setPass(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -62,7 +79,7 @@ const RegisterForm = () => {
               id="confirmPassword" 
               name="confirmPassword" 
               placeholder="Confirm Password" 
-              onChange={(e)=>setCPass(e.target.value)}
+              onChange={(e) => setCPass(e.target.value)}
             />
           </div>
           <button 
