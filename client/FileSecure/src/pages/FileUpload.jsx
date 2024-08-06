@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTimes, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 const FileUpload = () => {
+
+
   return (
     <div className="flex flex-col items-center justify-center max-h-fit mt-4 p-48 bg-gradient-to-r from-blue-200 to-blue-400">
       <div className="flex items-center justify-center w-4/5">
