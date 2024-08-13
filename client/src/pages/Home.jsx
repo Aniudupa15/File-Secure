@@ -8,7 +8,6 @@ const teamMembers = [
   {
     name: "Anirudha Udupa",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539601/1_x4znyx.jpg",
-    title: "Team Lead",
     description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
       instagram: "https://www.instagram.com/anirudhaudupa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -18,7 +17,6 @@ const teamMembers = [
   {
     name: "Ananya Udupa",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539601/2_zk70te.jpg",
-    title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/ananya_udupa6/",
@@ -28,7 +26,6 @@ const teamMembers = [
   {
     name: "Pratham P Shetty",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/3_jvhffo.jpg",
-    title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/prathamp.shetty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -38,7 +35,6 @@ const teamMembers = [
   {
     name: "Vrushali A Poojary",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/4_rnbldo.jpg",
-    title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
       twitter: "https://x.com/VrushaliAP04",
@@ -48,7 +44,6 @@ const teamMembers = [
   {
     name: "Prasanna P",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539603/5_hp4j1l.jpg",
-    title: "Backend",
     description: "2nd-year IS student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/iamprasannap?utm_source=qr&igsh=MW93ZTQwZjMzeTBqZw==",
