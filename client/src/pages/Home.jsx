@@ -44,7 +44,17 @@ const teamMembers = [
       twitter: "https://x.com/VrushaliAP04",
       github: "https://github.com/vrushaliapoojary",
     }
-  }
+  },
+  {
+    name: "Prasanna P",
+    image: "./src/Images/5.jpg",
+    title: "Backend",
+    description: "2nd-year AIML student at Srinivas Institute of Technology.",
+    social: {
+      instagram: "https://www.instagram.com/iamprasannap?utm_source=qr&igsh=MW93ZTQwZjMzeTBqZw==",
+      github: "https://github.com/Aniudupa15",
+    }
+  },
 ];
 
 const Home = () => {
@@ -53,7 +63,7 @@ const Home = () => {
     navigate("/FileUpload");
   };
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-200 to-blue-400 flex flex-col items-center py-10">
+    <div className="min-h-screen bg-gradient-to-r from-blue-200 to-blue-400 flex flex-col items-center pt-48 py-10">
       <div className="flex flex-col lg:flex-row items-center w-full max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center lg:items-start lg:mr-16 mb-10 lg:mb-0">
           <h1 className="text-black text-6xl lg:text-8xl font-extrabold pb-5 text-center lg:text-left">
@@ -86,7 +96,7 @@ const Home = () => {
             The working hands behind the success of File-Secure!
           </p>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
           {teamMembers.map((member, i) => (
             <div key={i} className="mx-auto w-full max-w-xs rounded-md border">
               <img
