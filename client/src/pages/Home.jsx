@@ -49,7 +49,7 @@ const teamMembers = [
     name: "Prasanna P",
     image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539603/5_hp4j1l.jpg",
     title: "Backend",
-    description: "2nd-year AIML student at Srinivas Institute of Technology.",
+    description: "2nd-year IS student at Srinivas Institute of Technology.",
     social: {
       instagram: "https://www.instagram.com/iamprasannap?utm_source=qr&igsh=MW93ZTQwZjMzeTBqZw==",
       github: "https://github.com/Aniudupa15",
