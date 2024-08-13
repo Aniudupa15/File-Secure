@@ -7,7 +7,7 @@ import { faGithub, faTwitter, faFacebook, faInstagram } from "@fortawesome/free-
 const teamMembers = [
   {
     name: "Anirudha Udupa",
-    image: "./src/Images/1.jpg",
+    image: "./src/Images/1.jpeg",
     title: "Team Lead",
     description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
@@ -17,7 +17,7 @@ const teamMembers = [
   },
   {
     name: "Ananya Udupa",
-    image: "./src/Images/2.jpg",
+    image: "./src/Images/2.jpeg",
     title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -27,7 +27,7 @@ const teamMembers = [
   },
   {
     name: "Pratham P Shetty",
-    image: "./src/Images/3.jpg",
+    image: "./src/Images/3.jpeg",
     title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -37,7 +37,7 @@ const teamMembers = [
   },
   {
     name: "Vrushali A Poojary",
-    image: "./src/Images/4.jpg",
+    image: "./src/Images/4.jpeg",
     title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -47,7 +47,7 @@ const teamMembers = [
   },
   {
     name: "Prasanna P",
-    image: "./src/Images/5.jpg",
+    image: "./src/Images/5.jpeg",
     title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
