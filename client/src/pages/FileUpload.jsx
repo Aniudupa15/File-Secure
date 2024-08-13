@@ -29,7 +29,7 @@ const FileUpload = () => {
     formData.append('file', file);
 
     try {
-      await axios.post('http://localhost:3001/upload', formData, {
+      await axios.post('https://file-secure.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -43,7 +43,7 @@ const FileUpload = () => {
 
   const fetchFiles = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/files');
+      const response = await axios.get('https://file-secure.onrender.com/files');
       setFileList(response.data);
     } catch (err) {
       console.error('Error fetching files:', err);

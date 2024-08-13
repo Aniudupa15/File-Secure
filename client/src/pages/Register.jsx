@@ -26,7 +26,7 @@ const RegisterForm = ()  => {
       CPass: CPassword, // Assuming the username is also the email
     };
 
-    axios.post('http://localhost:3001/register', data)
+    axios.post('https://file-secure.onrender.com/register', data)
       .then(result => {
         console.log(result);
         if (result.data === "Already registered") {
