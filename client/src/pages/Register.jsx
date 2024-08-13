@@ -44,7 +44,7 @@ const RegisterForm = ()  => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-400 mt-8">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
       <div className="flex justify-center mb-1">
-          <img src="./src/Images/logo.jpg" className="w-24 h-24 rounded-full" alt="DocEasy Logo" />
+          <img src="https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/logo_xa9zar.jpg" className="w-24 h-24 rounded-full" alt="DocEasy Logo" />
         </div>
         <h2 className="text-2xl font-bold mb-2 text-center">Register</h2>
         <p className="text-center text-muted-foreground mb-6">Get started today!</p>

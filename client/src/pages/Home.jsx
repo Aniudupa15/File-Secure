@@ -7,7 +7,7 @@ import { faGithub, faTwitter, faFacebook, faInstagram } from "@fortawesome/free-
 const teamMembers = [
   {
     name: "Anirudha Udupa",
-    image: "./src/Images/1.jpeg",
+    image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539601/1_x4znyx.jpg",
     title: "Team Lead",
     description: "2nd-year CSBS student at Canara Engineering College.",
     social: {
@@ -17,7 +17,7 @@ const teamMembers = [
   },
   {
     name: "Ananya Udupa",
-    image: "./src/Images/2.jpeg",
+    image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539601/2_zk70te.jpg",
     title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -27,7 +27,7 @@ const teamMembers = [
   },
   {
     name: "Pratham P Shetty",
-    image: "./src/Images/3.jpeg",
+    image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/3_jvhffo.jpg",
     title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -37,7 +37,7 @@ const teamMembers = [
   },
   {
     name: "Vrushali A Poojary",
-    image: "./src/Images/4.jpeg",
+    image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/4_rnbldo.jpg",
     title: "Frontend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {
@@ -47,7 +47,7 @@ const teamMembers = [
   },
   {
     name: "Prasanna P",
-    image: "./src/Images/5.jpeg",
+    image: "https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539603/5_hp4j1l.jpg",
     title: "Backend",
     description: "2nd-year AIML student at Srinivas Institute of Technology.",
     social: {

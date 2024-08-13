@@ -38,7 +38,7 @@ const Login = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
         <div className="flex justify-center  mb-1">
           <img
-            src="./src/Images/logo.jpg"
+            src="https://res.cloudinary.com/dgdxa7qqg/image/upload/v1723539602/logo_xa9zar.jpg"
             className="w-24 h-24 rounded-full"
             alt="DocEasy Logo"
           />
